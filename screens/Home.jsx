@@ -1,20 +1,26 @@
 import { Image, SafeAreaView, Text, View, TextInput, ScrollView } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ChevronDownIcon, UserIcon, AdjustmentsVerticalIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import Categories from '../components/Categories'
 import FeaturedRow from '../components/FeaturedRow'
+import client from "../sanity"
 
 
 
 const Home = () => {
     const navigation = useNavigation()
+    const [featuredCategories, setFeaturedCategories]= useState()
 
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerShown:false
         })
     }, [])
+
+    useEffect(()=>{
+        client.fetch()
+    },[])
 
   return (
     <>
